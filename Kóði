@@ -1,0 +1,49 @@
+// Dæmi um notkun á 7Segment display
+// Byggir á kóða héðan: https://lastminuteengineers.com/seven-segment-arduino-tutorial/
+
+#include "SevSeg.h"
+
+int servopin = 2;
+int Takk = 0;
+SevSeg sevseg;
+Servo Servo1;
+
+void Number(){
+   for(int i = 0; i < 10; i++) {
+        sevseg.setNumber(i);
+        sevseg.refreshDisplay();
+
+        Servo1.write(i*20);
+
+        delay(500);
+    }
+}
+
+void setup() {
+    Servo1.attach(servopin);
+
+    //Set to 1 for single digit display
+    byte numDigits = 1;
+
+    //defines common pins while using multi-digit display. Left empty as we have a single digit display
+    byte digitPins[] = {};
+
+    //Defines arduino pin connections in order: A, B, C, D, E, F, G, DP
+    byte segmentPins[] = {8, 7, 11, 12, 13, 9, 10, 1};
+    bool resistorsOnSegments = true;
+
+    //Initialize sevseg object. 
+    sevseg.begin(COMMON_CATHODE, numDigits, digitPins, segmentPins, resistorsOnSegments);
+
+    sevseg.setBrightness(90);
+}
+
+void loop() {
+  digitalRead(Takk);
+  if (Takk = true){
+    Number;
+  }
+    else if (Takk = false){
+      delay: 200;
+    }
+  }
